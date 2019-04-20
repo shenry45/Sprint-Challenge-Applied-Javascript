@@ -10,6 +10,8 @@ class Carousel {
 
         this.buttons = document.querySelectorAll('.carousel div');
 
+        this.buttons.forEach(el => el.style.zIndex = 1);
+
         this.buttons.forEach(el => {
             el.addEventListener('click', e => {
                 this.slide(e.target.classList.value)
@@ -18,49 +20,44 @@ class Carousel {
     }
     
     slide(e) {
+        const showSlide = () => {
+            this.img[this.curImg].style.display = 'block';
+            this.img[this.curImg].style.animation = 'fadeIn 0.5s 0s ease-in forwards';
+        } 
 
         //hide current image(s)
         this.img.forEach(el => {
             el.style.display = 'none';
+            el.style.animation = ''
         });
         // check which btn was clicked
         if (e === 'left-button') {
+            //increment slide counter
             this.curImg--;
 
+            //check slide counter num
             if (this.curImg < 0) {
                 this.curImg = this.img.length-1;
-
-                this.img[this.curImg].style.display = 'block';
-
-
+                showSlide();
             } else {
-
-                this.img[this.curImg].style.display = 'block';
-
+                showSlide();
             }
         }
         else if (e === 'right-button') {
+            //increment slide counter
             this.curImg++;
 
+            //check slide counter num
             if (this.curImg >= this.img.length) {
                 this.curImg = 0;
-
-                this.img[this.curImg].style.display = 'block';
-
-
+                showSlide();
             } else {
-
-                this.img[this.curImg].style.display = 'block';
-
+                showSlide();
             }
 
         } else {
             alert('Where did you just click?');
         }
-    }
-
-    resetImgs() {
-        
     }
 }
 
