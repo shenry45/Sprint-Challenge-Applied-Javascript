@@ -4,6 +4,7 @@
   height: 500px;
   position: relative;
   overflow: hidden;
+  z-index: 0;
   margin-top: 16px;
   @media(min-width: 1200px){
     width: 1200px;
@@ -12,7 +13,7 @@
     .flex(center);
     color: @lambda-times-color-white;
     background-color: @lambda-times-color-primary;
-    font-size: 40px;
+    font-size: 40px; 
     border-radius: 50%;
     position: absolute;
     width: 50px;
@@ -37,5 +38,15 @@
   img {
     .width-100();
     display: none;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0%;
+    filter: opacity(0);
+  } to {
+    opacity: 100%;
+    filter: opacity(1);
   }
 }
